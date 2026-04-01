@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links IASD Taboão</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #001236;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 450px;
+            width: 100%;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .perfil {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .perfil img {
+            width: 120px;
+            height: 120px;
+            border: 4px solid #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 8px 20px rgba(255,255,255,0.15);
+            transition: all 0.3s ease;
+            object-fit: cover;
+        }
+
+        .perfil img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(255,255,255,0.2);
+        }
+
+        .perfil h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin: 20px 0 10px;
+            background: linear-gradient(45deg, #ffffff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .perfil p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            font-weight: 300;
+            color: #e0e7ff;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,18,54,0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(255,255,255,0.2);
+            transform: scale(0.8);
+            animation: modalZoom 0.3s ease-out forwards;
+        }
+
+        @keyframes modalZoom {
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .btn-fechar {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid #ffffff;
+            color: #ffffff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-fechar:hover {
+            background: #ffffff;
+            color: #001236;
+            transform: scale(1.1);
+        }
+
+        .links {
+            width: 100%;
+        }
+
+        .botão {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            text-decoration: none;
+            text-align: center;
+            padding: 20px 25px;
+            margin-bottom: 18px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1.05em;
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .botão::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .botão:hover::before {
+            left: 100%;
+        }
+
+        .botão:hover {
+            background: #ffffff;
+            color: #001236;
+            border-color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255,255,255,0.2);
+        }
+
+        .botão i {
+            font-size: 1.3em;
+            transition: transform 0.3s ease;
+        }
+
+        .botão:hover i {
+            transform: scale(1.05);
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.85em;
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            font-weight: 300;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .botão:nth-child(1) { animation-delay: 0.1s; }
+        .botão:nth-child(2) { animation-delay: 0.2s; }
+        .botão:nth-child(3) { animation-delay: 0.3s; }
+        .botão:nth-child(4) { animation-delay: 0.4s; }
+        .botão:nth-child(5) { animation-delay: 0.5s; }
+        .botão:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .botão {
+            animation: slideIn 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        @media (max-width: 480px) {
+            .perfil h1 {
+                font-size: 1.8em;
+            }
+            .botão {
+                padding: 18px 20px;
+                font-size: 1em;
+            }
+            .btn-fechar {
+                top: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="perfil">
+            <img id="fotoPerfil" src="foto iasd.jpeg" alt="IASD Taboão">
+            <h1>IASD Taboão</h1>
+            <p>Igreja Adventista do Sétimo Dia Taboão</p>
+        </div>
+        
+        <div class="links">
+            <a href="https://maps.app.goo.gl/2YTLRAw34zyB8b5h9?g_st=ic" class="botão" target="_blank">
+                <i class="fas fa-map-marker-alt"></i>
+                Localização da Igreja
+            </a>
+            <a href="https://www.instagram.com/iasdtaboao?igsh=MWV6N3dxeGNhbzI4cQ==" class="botão" target="_blank">
+                <i class="fab fa-instagram"></i>
+                Instagram
+            </a>
+            <a href="https://www.facebook.com/igrejaadventistataboao" class="botão" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+                Facebook
+            </a>
+            <a href="https://www.instagram.com/clube_estreladovale?igsh=MXc2ZnRwcW5raHp2dw==" class="botão" target="_blank">
+                <i class="fas fa-star"></i>
+                Instagram Desbravadores
+            </a>
+            <a href="https://www.instagram.com/estrelinhadovale.oficial?igsh=MWtuMzUweWI0dW5scg==" class="botão" target="_blank">
+                <i class="fas fa-child"></i>
+                Instagram Aventureiros
+            </a>
+            <a href="https://github.com/evelynnz9" class="botão" target="_blank">
+                <i class="fas fa-users"></i>
+                Classe de Adolescentes
+            </a>
+        </div>
+        
+        <footer>Criado por IASD Taboão &copy; 2026</footer>
+    </div>
+
+    <div id="modal" class="modal">
+        <img id="modalImg" class="modal-img" src="" alt="Foto ampliada">
+        <div class="btn-fechar" id="btnFechar">
+            <i class="fas fa-times"></i>
+        </div>
+    </div>
+
+    <script>
+        const fotoPerfil = document.getElementById('fotoPerfil');
+        const modal = document.getElementById('modal');
+        const modalImg = document.getElementById('modalImg');
+        const btnFechar = document.getElementById('btnFechar');
+
+        fotoPerfil.addEventListener('click', function() {
+            modalImg.src = this.src;
+            modal.classList.add('active');
+        });
+
+        btnFechar.addEventListener('click', function() {
+            modal.classList.remove('active');
+        });
+
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
